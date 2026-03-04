@@ -38,10 +38,14 @@ st.markdown("""
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
-    /* Headers */
+    /* Typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    
+    h1, h2, h3, p, span, div {
+        font-family: 'Inter', sans-serif !important;
+    }
     h1, h2, h3 {
         color: #f1f5f9 !important;
-        font-family: 'Inter', sans-serif;
     }
     /* DataFrame Tables */
     .stDataFrame {
@@ -127,8 +131,8 @@ elif vehicle_filter == "Bicycles Only":
 # ==========================================
 # MAIN DASHBOARD UI
 # ==========================================
-st.title("German Federal Logistics Risk Command")
-st.markdown("Supply Chain Route Optimization & Geospatial Hazard Analysis (Based on 2022 Destatis Open Data)")
+st.title("Destatis Route Optimizer | Logistics Risk Console")
+st.markdown("Decision Support System for Supply Chain Route Optimization (Based on Official 2022 German Federal Data)")
 
 # C-Suite KPIs
 col1, col2, col3 = st.columns(3)
@@ -190,8 +194,21 @@ with col_left:
 
 with col_right:
     st.subheader("Strategic Routing Insights")
-    st.success("**Insight 1:** Nordrhein-Westfalen (NRW) acts as the primary logistical hazard zone with over 53,000 incidents. High-value freight routing through the Ruhr area should anticipate a 15% increase in delay probability.")
-    st.warning("**Insight 2:** Commercial truck collisions peak heavily during afternoon rush hours (14:00 - 17:00). We recommend halting non-essential fleet movement during these windows to eliminate risk.")
-    st.info("**Insight 3:** 2022 Data identifies a sharp spike in Truck vs Bicycle fatalities in Q3. Delivery schedules within dense urban cores (Berlin, Munich) must mandate specific 'Right-Turn Safety' training.")
+    st.markdown("""
+    **⚠️ Primary Hazard Zone (NRW):** Nordrhein-Westfalen acts as the primary logistical hazard zone with over 53,000 incidents. High-value freight routing through the Ruhr area should anticipate a 15% higher delay probability.
+    
+    **🕒 Temporal Peak Danger:** Commercial truck collisions peak heavily during afternoon rush hours (14:00 - 17:00). We recommend halting non-essential fleet movement during these windows to eliminate risk exposure.
+    
+    **🚲 Urban Core Risk:** Data identifies a sharp spike in Truck vs Bicycle fatalities in Q3. Delivery schedules within dense urban cores (Berlin, Munich) must mandate 'Right-Turn Safety' fleet retraining.
+    """)
 
-st.caption("Data Source: Statistisches Bundesamt (Destatis) | Designed specifically for Executive Portfolio Presentation")
+st.markdown("---")
+# Senior Level Expanders for methodology
+with st.expander("🔬 Methodology & Assumptions"):
+    st.markdown("""
+    - **Geospatial Engineering:** Raw coordinates from EPSG:25832 (UTM) were programmatically projected into standard WGS84 for WebGL rendering.
+    - **Coverage:** Analysis bounds to the 2022 *Unfallatlas*. Only incidents with validated GPS coordinates are mapped.
+    - **Aggregate Definition:** 'High-Risk Vehicles' focuses strictly on commercial logistics components interacting with vulnerable traffic vectors.
+    """)
+
+st.caption("Data Provided by Statistisches Bundesamt (Destatis) | Open Data Commons")
