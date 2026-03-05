@@ -41,7 +41,7 @@ st.markdown("""
     /* Typography */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
     
-    h1, h2, h3, p, span, div {
+    h1, h2, h3, p, li, label, .stMarkdown {
         font-family: 'Inter', sans-serif !important;
     }
     h1, h2, h3 {
